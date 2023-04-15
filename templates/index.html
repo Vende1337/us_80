@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>File Processing</title>
+    <style>
+        header {
+            background: linear-gradient(to bottom, #0085a1, #005c6b);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+        header h1 {
+            color: white;
+            margin: 0;
+            font-size: 36px;
+        }
+        header p {
+            margin: 0;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        body {
+            background-color: #f5fafa;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #222;
+        }
+        h1 {
+            color: #0085a1;
+            text-align: center;
+            margin-top: 50px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+          }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        .upload-button {
+            margin-top: 1px;
+            margin-right: 90px;
+            background-color: #0085a1;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 2px 2px 5px #888888;
+        }
+        
+        .upload-button:hover {
+            background-color: #005c6b;
+            box-shadow: 2px 2px 10px #888888;
+        }
+        .download-link {
+            display: block;
+            text-align: center;
+            margin-top: 50px;
+        }
+        img {
+            display: block;
+            margin: 20px ;
+            max-width: 100%;
+          }
+
+        pre {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+        }
+        
+        .pre-container {
+            position: relative;
+            margin: 50px ;
+            max-width: 50%;
+          }
+          
+        .pre-caption {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+          }  
+        
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+        }  
+        .file-input {
+            margin-left: 90px;
+            position: relative;
+            width: 450px;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+        
+        .file-input input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        
+        .file-input label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 50%;
+            background-color: #0085a1;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .file-input label:hover {
+            background-color: #005c6b;
+        }
+        .download-button {
+            margin-top: 10px;
+            margin-right: 90px;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 2px 2px 5px #888888;
+        }
+        
+        .download-button:hover {
+            background-color: #357a38;
+            box-shadow: 2px 2px 10px #888888;
+        }
+
+        .upload-button,
+        .download-button {
+             display: inline-block;
+        }
+
+
+
+          
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Сделал студент гр. ПО-Б20-1-5 Венде Д.А. РГГМУ 2023г.</h1>
+    </header>
+    <h1>Расчет составляющих геострофического течения с использованием УС-80</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="file-input">
+            <input type="file" name="myfile" id="myfile">
+            <label for="myfile">Выберите файл для рассчета</label>
+        </div>
+        <button type="submit" class="upload-button">Рассчитать</button>
+        {% if graphic %}
+        <a href="send/" class="download-button">Скачать файл</a>
+        {% endif %}
+    </form>
+    <div class="container">
+        {% if content %}
+        <div class="pre-container">
+            <div class="pre-caption">Результат расчета:</div>
+            <pre>{{ content }}</pre>
+        </div>
+        {% endif %}
+        {% if graphic %}
+            <img src="data:image/png;base64,{{ graphic }}" />
+        {% endif %}
+    </div>
+</body>
+</html>

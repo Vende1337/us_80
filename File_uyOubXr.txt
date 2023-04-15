@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>File Processing</title>
+    <style>
+        body {
+            background-color: #f5fafa;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #222;
+        }
+        h1 {
+            color: #0085a1;
+            text-align: center;
+            margin-top: 50px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+        button[type="submit"] {
+            background-color: #0085a1;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #005c6b;
+        }
+        .download-link {
+            display: block;
+            text-align: center;
+            margin-top: 50px;
+        }
+        img {
+            display: block;
+            margin-top: 50px;
+            max-width: 100%;
+        }
+
+        pre {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            max-width: 10%;
+            margin: 0 auto;
+          }
+        
+        .pre-container {
+            position: relative;
+          }
+          
+        .pre-caption {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+          }  
+          
+    </style>
+</head>
+<body>
+    <h1>File Processing</h1>
+    <form method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="csrfmiddlewaretoken" value="SGHDsvbuc7wkrsfblGULUqPs2R9tKefMexEps5tKMbEyIbsgv8yv25p9jsjY1hnw">
+        <input type="file" name="myfile"><br><br>
+        <button type="submit">Upload</button>
+    </form>
+    
+    
+    <h2>Новый файл:</h2>
+    <div class="file-window">
+        <a href="" download="File.txt">Скачать файл</a>
+        <pre></pre>
+        
+    </div>
+</body>
+</html>
